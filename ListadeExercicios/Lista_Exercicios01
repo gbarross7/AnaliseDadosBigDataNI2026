@@ -1,0 +1,74 @@
+# #4
+# codigo =  int(input("Informe o código"))
+# if codigo == 1:
+#     print("Sul")
+# elif codigo == 2:
+#     print("Norte")
+# elif codigo == 3:
+#     print("Leste")
+# elif codigo == 4:
+#     print("Oeste")
+# elif codigo == 5:
+#     print("Nordeste")
+# elif codigo == 6:
+#     print("Nordeste")
+# elif codigo == 7:
+#     print("Sudeste")
+# elif codigo == 8:
+#     print("Sudeste")      
+# elif codigo == 9:
+#     print("Sudeste")
+# elif codigo == 10:
+#     print("Centro-oeste")
+# elif codigo == 11:
+#     print("Noroeste")
+# else: None
+# print  ("Importado")    
+
+
+#5 
+# aprovado = >= 6.0
+# reprovado = < 3.0
+# recuperacao = >= 3.0 e < 6.0
+
+
+
+# nota1=abs(float(input('Primeira Nota:')))
+# nota2=abs(float(input('Segunda Nota:')))
+# optativa=abs(float(input('Tem nota Optativa?')))
+
+# if optativa==-1:
+#     media=(nota1 + nota2)/2 
+# else:
+#     optativa != -1
+#     if optativa>nota1:
+#         media=(optativa + nota2)/2
+    
+#     else:
+#         media=(optativa + nota1)/2 
+
+
+# if media>= 6.0:
+#     resultado='APROVADO'
+# elif media>= 3.0:
+#     resultado='RECUPERAÇÃO'
+# else:
+#     resultado='REPROVADO!'
+
+# print(f'Média final: {media}; resultado: {resultado}')
+
+#################################################
+
+# #1 
+
+# potencia=3
+# lampada=0
+# largura=float(input('Largura:'))
+# comprimento=float(input('Comprimento:'))
+
+# area=largura*comprimento
+# lampada=area/potencia
+
+
+# #'round' comando pra controlar casas decimais
+# print('São necessárias {round(lampada)} lampadas para iluminar um cômodode {area} M2')
