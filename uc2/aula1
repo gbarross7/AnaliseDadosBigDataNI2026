@@ -1,0 +1,11 @@
+#PANDAS - 1D - SÉRIE
+#       - 2D - DATAFANE
+
+#NUMPY - 1D - ARRAY
+
+##############################################################################################
+
+#LER O ARQUIVO EXCEL PARA DATAFRAME 
+import pandas as pd
+df = pd.read_excel('base_invest.xlsx' , sheet_name= 'Transacoes')
+print(df.head(5))
