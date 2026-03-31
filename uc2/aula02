@@ -1,0 +1,82 @@
+PANDAS - Séries sempre uma dimensão 
+TODO DIA "pip install pandas"- NO TERMINAL
+
+#3M - Média = ".mean ()"
+#    - Moda = ".mode()"
+#   - Mediana = ".median()"
+
+import pandas as pd
+
+# dades_lista = [25, 30, 22, 28]
+# idades_series = pd.Series([25, 30, 22, 28])
+# print(f"Lista:\n{idades_lista}\n")
+# print(f"Series:\n{idades_series}")
+
+#Manipulando Séries
+
+notas = pd.Series([9.5, 8.0, 7.5, 9.0], index=['João', 'Maria', 'Pedro', 'Ana'])
+print(notas)
+
+# print(notas['Maria']) # Acessando a nota de Maria
+# print(notas[2]) # Acessando a nota de Pedro
+# print(notas.mean()) # Calculando a média das notas
+# print(notas[notas > 8]) # Filtrando notas maiores que 8
+# print(notas.describe()) # Estatísticas descritivas das notas
+
+
+#Operações Aritméticas
+
+# Aumentar todas as notas em 10%
+notas_ajustadas = notas * 1.10
+print(notas_ajustadas)
+
+
+################################################
+- count() = quantidade total
+- mean() = Média 
+- max() = Máximo
+- min() = Mínimo 
+- var () = Variância 
+- std() = Desvio Padrão 
+- sum() = Somatorio
+
+####################################################
+
+LER O ARQUIVO EXCEL PARA DATAFRAME 
+Você recebeu um conjunto de dados de uma empresa de tecnologia voltada para aplicações
+de investimentos. O objetivo é responder algumas perguntas importantes:
+● Quais são as máximas e mínimas de operação de compra e venda das transações?
+● Qual CNPJ tem o ativo de maior valor?
+● Qual valor total em transações de cada participante?
+Usando os conceitos de DataFrame e os comandos que aprendemos, crie um script que
+carregue os dados e responda a essas perguntas
+
+import pandas as pd
+
+df_transacoes = pd.read_excel('C:\Users\glaucio.barros\Documents\UC2\aula02\base_invest.xlsx', sheet_name='Transacoes')
+df_ativo = pd.read_excel('C:\Users\glaucio.barros\Documents\UC2\aula02\base_invest.xlsx', sheet_name='Ativo')
+
+Pergunta 1: Quais são as máximas e mínimas de operação de compra e venda das transações? ---
+variável nova    tabela[filtro]
+df_compra = df_transacoes[df_transacoes['operacao'] == 'compra']
+
+df_venda = df_transacoes[df_transacoes['operacao'] == 'venda']
+print(df_compra)
+print(df_venda)
+
+
+max_compra_preco = df_compra['preco'].max()
+min_compra_preco = df_compra['preco'].min()
+max_venda_preco = df_venda['preco'].max()
+min_venda_preco = df_venda['preco'].min()
+
+
+print("--- Preços máximos e mínimos das operações ---")
+print(f"Preço máximo de compra: {max_compra_preco}")
+print(f"Preço mínimo de compra: {min_compra_preco}")
+print(f"Preço máximo de venda: {max_venda_preco}")
+print(f"Preço mínimo de venda: {min_venda_preco}")
+print("\n")
+
+
+##########################################
