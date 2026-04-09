@@ -1,0 +1,74 @@
+conexao = mysql.connector.connect(
+    host="127.0.0.1",
+    user="root",
+    password="",
+    database="vendas_online"
+)
+
+# 2. Criar um objeto cursor para executar as queries
+cursor = conexao.cursor()
+
+# 3. Definir a query
+query = "SELECT * FROM produtos"
+
+# 4. Executar a query
+cursor.execute(query)
+
+# 5. Obter os resultados
+resultados = cursor.fetchall()
+
+# 6. Exibir os resultados
+for linha in resultados:
+    print(linha)
+
+    ##########################################
+
+   -- #Construindo meu banco de dados relacional 
+
+# CREATE DATABASE vendas_online;
+# USE vendas_online; 
+
+#   -- Primeira Tabela: Produtos
+
+# produtos CREATE TABLE Produtos (
+# id_produto INT PRIMARY KEY ,
+# nome_produto VARCHAR (100),
+# categoria VARCHAR (50),
+# preco DECIMAL (10,2),
+# estoque INT 
+# );
+# TRUNCATE produtos;
+
+# SELECT * FROM Produtos; -- verificação do conteúdo
+
+# -- Clientes
+# create table Clientes (
+# id_clientes INT PRIMARY KEY NOT NULL,
+# nome VARCHAR(255) NOT NULL,
+# email VARCHAR(255) NOT NULL
+# );
+
+# SELECT * FROM Cliente
+
+
+# -- Pedidos: Criação sem as FK (Chaves externas) + Alter Table
+# CREATE TABLE Pedidos ( 
+# id_pedidos INT PRIMARY KEY,
+# data_pedidos DATE,
+# valor_total DECIMAL (10,2),
+# id_clientes INT,
+# id_produto INT,
+# quantidade INT
+# );
+
+
+# ALTER TABLE Pedidos 
+# ADD CONSTRAINT fk_pedidos_cliente
+# FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente);
+
+# TRUNCATE TABLE Pedidos;
+# SELECT * FROM Pedidos;
+
+# SELECT nome_produto; preco
+# FROM produtos
+# WHERE preco > 1000;
