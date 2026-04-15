@@ -1,0 +1,60 @@
+import numpy as np
+import pandas as pd
+import mysql.connector
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+def obter_dados_do_banco(query):
+    try:
+        conexao = mysql.connector.connect(
+            host="127.0.0.1",
+            user="root",
+            password="",
+            database="vendas_online"
+        )
+        cursor = conexao.cursor()
+        cursor.execute(query)
+        resultados = cursor.fetchall()
+        return resultados
+    except mysql.connector.Error as erro:
+        print(f"Erro ao conectar ao MySQL: {erro}")
+        return None
+    finally:
+        if 'conexao' in locals() and conexao.is_connected():
+            cursor.close()
+            conexao.close()
+
+query_produtos = "Select *FROM produtos"
+df_produtos=pd.DataFrame(obter_dados_do_banco(query_produtos), columns=['id_produto','nome_produto','categoria','preco','estoque'])
+print(df_produtos)                                                                                                                              
+
+precos_array=df_produtos['preco'].to_numpy()
+
+precos_array_final= np.array(precos_array).astype(float)
+print(precos_array_final)
+
+
+media=np.mean(precos_array)
+mediana=np.median(precos_array)
+
+## Continuando exatamente de onde paramos na aula passada (histograma), vamos calcular os quartis e verificar se a média está dentro da faixa interquartil (entre Q1 e Q3).
+
+q1 = np.percentile(precos_array_final, 25)
+q2 = np.percentile(precos_array_final, 50)
+q3 = np.percentile(precos_array_final, 75)
+
+print(f"\nPrimeiro Quartil (Q1): R$ {q1:.2f}")
+print(f"Segundo Quartil (Mediana/Q2): R$ {q2:.2f}")
+print(f"Terceiro Quartil (Q3): R$ {q3:.2f}")
+
+if q1 <= media <= q3:
+    print("\nA média está DENTRO da faixa interquartil (entre Q1 e Q3).")
+else:
+    print("\nA média está FORA da faixa interquartil (fora de Q1 e Q3).")
+
+plt.axvline(x=q1, color='green', linestyle='--', label=f'Q1: R$ {q1:.2f}')
+plt.axvline(x=q3, color='orange', linestyle='--', label=f'Q3: R$ {q3:.2f}')
+plt.axvline(x=media, color='red', linestyle='-', label=f'Média: R$ {media:.2f}')
+plt.axvline(x=mediana, color='purple', linestyle='-', label=f'Mediana: R$ {mediana:.2f}')
+plt.legend()
+plt.show()
